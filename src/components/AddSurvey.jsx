@@ -18,7 +18,7 @@ const AddSurvey = () => {
     const submitSurvey = async () => {
         try {
             // Replace 'http://localhost:3001' with your actual backend URL
-            const response = await axios.post('http://localhost:3000/api/surveys', formValues);
+            const response = await axios.post('http://localhost:3001/api/surveys', formValues);
             console.log(response.data);  // Log the response from the backend
 
             // Add any additional logic here, e.g., show a success message, redirect, etc.
@@ -26,6 +26,30 @@ const AddSurvey = () => {
             console.error('Error submitting survey:', error);
             // Handle errors as needed
         }
+    };
+
+    const tryGet = async () => {
+        try {
+            // Replace 'http://localhost:3001' with your actual backend URL
+            const response = await axios.get('http://localhost:3001/api/surveys', formValues);
+            console.log(response.data);  // Log the response from the backend
+
+            // Add any additional logic here, e.g., show a success message, redirect, etc.
+        } catch (error) {
+            console.error('Error submitting survey:', error);
+            // Handle errors as needed
+        }
+
+        setFormValues({
+            name: '',
+            graduation: false,
+            postGraduation: false,
+            phD: false,
+            skills: null,
+            gender: '',
+            phone: '',
+            email: '',
+        });
     };
     
     const topSkills = [
@@ -155,7 +179,7 @@ const AddSurvey = () => {
 
                 <Stack direction="row" spacing={2} className='mt-5'>
                     <Button type='button' onClick={submitSurvey} variant="contained" style={{ height: '50px', width: '200px' }} className='bg-success'>Submit</Button>
-                    <Button type='button' onClick={resetValues} variant="contained" style={{ height: '50px', width: '200px', color: "blue" }} className='bg-light'>Reset</Button>
+                    <Button type='button' onClick={tryGet} variant="contained" style={{ height: '50px', width: '200px', color: "blue" }} className='bg-light'>Reset</Button>
                 </Stack>
             </form>
         </div>
